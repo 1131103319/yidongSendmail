@@ -70,7 +70,7 @@ public class service {
     @Scheduled(cron = "${cron1}")
     public void dingshi1() {
         int hour = LocalDateTime.now().getHour();
-        if(hour==9||hour>=14||hour==0) {
+        if(hour==9||hour>=13) {
             try {
                 File file = new File(file2);
                 StringBuilder stringBuilder = new StringBuilder();
