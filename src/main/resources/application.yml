@@ -1,0 +1,36 @@
+spring :
+  mail:
+    host: smtp.139.com
+    port: 465
+    password:  9478a82c6ab0c31a8a00
+    username: 18335368637@139.com
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.socketFactory.fallback : true
+      mail.smtp.socketFactory.class : javax.net.ssl.SSLSocketFactory
+      mail.smtp.socketFactory.port : 465
+      mail.smtp.port : 465
+
+usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com
+usernames1: 13669794694@139.com
+file1: /mnt/disk28/sendmail/alarms/check_warn.log
+file2: /mnt/disk28/sendmail/alarms/out_apk.log
+title: 巡检告警
+title1: APK和域名巡检结果
+cron: "1 35 */1 * * *"
+cron1: "1 45 */1 * * *"
+#cron: "*/10 * * * * *"
+
+logging:
+  level:
+    root: INFO
+    com.example: DEBUG
+    org.apache.yidong.yidongsendmail: INFO
+  file:
+    name: ./logs/yidongsendmail.log
+    max-size: 50MB
+    max-history: 10
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
