@@ -72,8 +72,8 @@ public class service {
     public void dingshi1() {
         log.info("开始执行定时任务");
         int hour = LocalDateTime.now().getHour();
+        log.info("当前时间为"+LocalDateTime.now());
         if(hour==9||hour>=13) {
-
             try {
                 File file = new File(file2);
                 StringBuilder stringBuilder = new StringBuilder();

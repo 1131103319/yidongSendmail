@@ -12,14 +12,14 @@ spring :
       mail.smtp.socketFactory.port : 465
       mail.smtp.port : 465
 
-#usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com
-#usernames1: 13669794694@139.com
-usernames: 18335368637@139.com
-usernames1: 18335368637@139.com
-#file1: /mnt/disk28/sendmail/alarms/check_warn.log
-#file2: /mnt/disk28/sendmail/alarms/out_apk.log
-file1: /tmp/hello1
-file2: /tmp/hello2
+usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com
+usernames1: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com
+#usernames: 18335368637@139.com
+#usernames1: 18335368637@139.com
+file1: /mnt/disk28/sendmail/alarms/check_warn.log
+file2: /mnt/disk28/sendmail/alarms/out_apk.log
+#file1: /tmp/hello1
+#file2: /tmp/hello2
 title: 巡检告警
 title1: APK和域名巡检结果
 cron: "10 35 * * * *"
