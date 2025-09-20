@@ -43,6 +43,7 @@ public class service {
 
     @Scheduled(cron = "${cron}")
     public void dingshi() {
+        log.info("开始执行定时任务");
         try {
             File file = new File(file1);
             StringBuilder stringBuilder = new StringBuilder();
@@ -69,8 +70,10 @@ public class service {
 
     @Scheduled(cron = "${cron1}")
     public void dingshi1() {
+        log.info("开始执行定时任务");
         int hour = LocalDateTime.now().getHour();
         if(hour==9||hour>=13) {
+
             try {
                 File file = new File(file2);
                 StringBuilder stringBuilder = new StringBuilder();
