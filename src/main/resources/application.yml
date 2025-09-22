@@ -11,9 +11,13 @@ spring :
       mail.smtp.socketFactory.class : javax.net.ssl.SSLSocketFactory
       mail.smtp.socketFactory.port : 465
       mail.smtp.port : 465
+      # 设置连接超时（单位：毫秒）
+      mail.smtp.connectiontimeout: 30000  # 10秒
+      # 设置读取超时（单位：毫秒）
+      mail.smtp.timeout: 30000  # 10秒
 
-usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com
-usernames1: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com
+usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com
+usernames1: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com
 #usernames: 18335368637@139.com
 #usernames1: 18335368637@139.com
 file1: /mnt/disk28/sendmail/alarms/check_warn.log
