@@ -1,6 +1,7 @@
 spring :
   mail:
-    host: smtp.139.com
+#    host: smtp.139.com
+    host: 120.232.169.42
     port: 465
     password:  9478a82c6ab0c31a8a00
     username: 18335368637@139.com
@@ -16,6 +17,7 @@ spring :
       # 设置读取超时（单位：毫秒）
       mail.smtp.timeout: 30000  # 10秒
       mail.smtp.enable: true
+      mail.smtp.ssl.enable: true
 
 usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com
 usernames1: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com
@@ -30,6 +32,7 @@ title1: APK和域名巡检结果
 cron: "10 35 * * * *"
 cron1: "20 45 * * * *"
 #cron: "*/10 * * * * *"
+#cron1: "*/10 * * * * *"
 
 logging:
   level:

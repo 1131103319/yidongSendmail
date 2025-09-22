@@ -12,7 +12,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -57,11 +59,21 @@ public class service {
                 }
             }
             String content = stringBuilder.toString();
-            if (!content.trim().isEmpty()) {
-                sendmail.sendBatchMai(title, content, mailUsernames);
+//            if (!content.trim().isEmpty()) {
+//                sendmail.sendBatchMai(title, content, mailUsernames);
+//                log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
+//            } else {
+//                log.warn("content is empty");
+//            }
+            if(!content.trim().isEmpty()) {
+                ArrayList<File> files = new ArrayList<>();
+                files.add(file);
+                content = "";
+                content=String.valueOf(new Random().nextInt());
+                sendmail.sendMail(title,content, mailUsernames,files);
                 log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
-            } else {
-                log.warn("content is empty");
+            }else{
+                log.warn("file is empty");
             }
         } catch (Exception e) {
             log.error("发送mail异常", e);
@@ -87,11 +99,21 @@ public class service {
                     }
                 }
                 String content = stringBuilder.toString();
-                if (!content.trim().isEmpty()) {
-                    sendmail.sendBatchMai(title1, content, mailUsernames1);
-                    log.info("title:{},content:{},mailUsernames:{},status:success", title1, content, mailUsernames1);
-                } else {
-                    log.warn("content is empty");
+//                if (!content.trim().isEmpty()) {
+//                    sendmail.sendBatchMai(title1, content, mailUsernames1);
+//                    log.info("title:{},content:{},mailUsernames:{},status:success", title1, content, mailUsernames1);
+//                } else {
+//                    log.warn("content is empty");
+//                }
+                if(!content.trim().isEmpty()) {
+                    ArrayList<File> files = new ArrayList<>();
+                    files.add(file);
+                    content = "";
+                    content=String.valueOf(new Random().nextInt());
+                    sendmail.sendMail(title,content, mailUsernames,files);
+                    log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
+                }else{
+                    log.warn("file is empty");
                 }
             } catch (Exception e) {
                 log.error("发送mail异常", e);
