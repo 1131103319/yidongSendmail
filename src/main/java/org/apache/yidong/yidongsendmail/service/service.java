@@ -12,11 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 @Slf4j
 @Service
@@ -25,29 +21,47 @@ public class service {
     private SendmailImpl sendmail;
     @Value("${usernames}")
     private String[] mailUsernames;
-    @Value("${usernames1}")
-    private String[] mailUsernames1;
-    @Value("${file1}")
-    private String file1;
-    @Value("${file2}")
-    private String file2;
+    @Value("${file}")
+    private String[] file;
     @Value("${title}")
-    private String title;
-    @Value("${title1}")
-    private String title1;
-    Executor executor = Executors.newFixedThreadPool(3);
-
+    private String[] title;
     @PostConstruct
     public void init() {
-        System.out.println(Arrays.toString(mailUsernames));
-        System.out.println(file1 + " " + file2);
+        log.info(Arrays.toString(mailUsernames));
+        log.info(Arrays.toString(file));
+        log.info(Arrays.toString(title));
     }
 
-    @Scheduled(cron = "${cron}")
-    public void dingshi() {
+    @Scheduled(cron = "${cron1}")
+    public void dingshi1() {
+        sendmailtoyidong(file[0],title[0],mailUsernames);
+    }
+
+    @Scheduled(cron = "${cron2}")
+    public void dingshi2() {
+        int hour = LocalDateTime.now().getHour();
+        log.info("当前时间为"+LocalDateTime.now());
+        if(hour==9||hour>=13) {
+            sendmailtoyidong(file[1],title[1],mailUsernames);
+        }
+    }
+    @Scheduled(cron = "${cron3}")
+    public void dingshi3() {
+        sendmailtoyidong(file[2],title[2],mailUsernames);
+    }
+    @Scheduled(cron = "${cron4}")
+    public void dingshi4() {
+        sendmailtoyidong(file[3],title[3],mailUsernames);
+    }
+    @Scheduled(cron = "${cron5}")
+    public void dingshi5() {
         log.info("开始执行定时任务");
+        sendmailtoyidong(file[4],title[4],mailUsernames);
+    }
+    public void sendmailtoyidong(String filename,String title,String[] mailUsernames){
+        log.info("开始执行定时任务{}",title);
         try {
-            File file = new File(file1);
+            File file = new File(filename);
             StringBuilder stringBuilder = new StringBuilder();
             String line = null;
             BufferedReader bufferedReader = null;
@@ -59,65 +73,14 @@ public class service {
                 }
             }
             String content = stringBuilder.toString();
-//            if (!content.trim().isEmpty()) {
-//                sendmail.sendBatchMai(title, content, mailUsernames);
-//                log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
-//            } else {
-//                log.warn("content is empty");
-//            }
-            if(!content.trim().isEmpty()) {
-                ArrayList<File> files = new ArrayList<>();
-                files.add(file);
-                content = "";
-                content=String.valueOf(new Random().nextInt());
-                sendmail.sendMail(title,content, mailUsernames,files);
+            if (!content.trim().isEmpty()) {
+                sendmail.sendBatchMai(title, content, mailUsernames);
                 log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
-            }else{
-                log.warn("file is empty");
+            } else {
+                log.warn("content is empty");
             }
         } catch (Exception e) {
             log.error("发送mail异常", e);
-        }
-    }
-
-    @Scheduled(cron = "${cron1}")
-    public void dingshi1() {
-        log.info("开始执行定时任务");
-        int hour = LocalDateTime.now().getHour();
-        log.info("当前时间为"+LocalDateTime.now());
-        if(hour==9||hour>=13) {
-            try {
-                File file = new File(file2);
-                StringBuilder stringBuilder = new StringBuilder();
-                String line = null;
-                BufferedReader bufferedReader = null;
-                if (file.exists() && file.isFile()) {
-                    bufferedReader = new BufferedReader(new FileReader(file));
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line);
-                        stringBuilder.append("\n");
-                    }
-                }
-                String content = stringBuilder.toString();
-//                if (!content.trim().isEmpty()) {
-//                    sendmail.sendBatchMai(title1, content, mailUsernames1);
-//                    log.info("title:{},content:{},mailUsernames:{},status:success", title1, content, mailUsernames1);
-//                } else {
-//                    log.warn("content is empty");
-//                }
-                if(!content.trim().isEmpty()) {
-                    ArrayList<File> files = new ArrayList<>();
-                    files.add(file);
-                    content = "";
-                    content=String.valueOf(new Random().nextInt());
-                    sendmail.sendMail(title,content, mailUsernames,files);
-                    log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
-                }else{
-                    log.warn("file is empty");
-                }
-            } catch (Exception e) {
-                log.error("发送mail异常", e);
-            }
         }
     }
 
