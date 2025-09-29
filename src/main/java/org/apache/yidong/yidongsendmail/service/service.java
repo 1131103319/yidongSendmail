@@ -58,6 +58,11 @@ public class service {
         log.info("开始执行定时任务");
         sendmailtoyidong(file[4],title[4],mailUsernames);
     }
+    @Scheduled(cron = "${cron6}")
+    public void dingshi6() {
+        log.info("开始执行定时任务");
+        sendmailtoyidong(file[5],title[5],mailUsernames);
+    }
     public void sendmailtoyidong(String filename,String title,String[] mailUsernames){
         log.info("开始执行定时任务{}",title);
         try {
