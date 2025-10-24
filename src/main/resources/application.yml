@@ -34,6 +34,10 @@ cron5: 20 10 * * * *
 cron6: 20 3 2-23/3 * * *
 cron7: 2 2 * * * *
 cron8: 2 10,40 * * * *
+#usernames: 18335368637@139.com
+#file: /tmp/hello
+#title: test
+#cron1: 2 * * * * *
 
 
 logging:
