@@ -3,7 +3,9 @@ package org.apache.yidong.yidongsendmail.service;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.yidong.yidongsendmail.utils.SendmailImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,19 @@ import java.util.Arrays;
 @Slf4j
 @Service
 public class service {
+    @Autowired
+    @Qualifier("javaMailSender")  // 注入默认的邮件发送器（spring.mail）
+    private JavaMailSender mailSender1;
+
+    @Autowired
+    @Qualifier("javaMailSender2")  // 注入第二个邮件发送器（spring.mail2）
+    private JavaMailSender mailSender2;
+
+    @Value("${spring.mail.username}")  //发送人的邮箱  比如13XXXXXX@139.com
+    private String from1;
+    @Value("${spring.mail2.username}")  //发送人的邮箱  比如13XXXXXX@139.com
+    private String from2;
+
     @Autowired
     private SendmailImpl sendmail;
     @Value("${usernames}")
@@ -88,11 +103,11 @@ public class service {
 
     public void sendmailtoyidong(String filename,String title,String[] mailUsernames){
         log.info("开始执行定时任务{}",title);
+        String line = null;
+        BufferedReader bufferedReader = null;
+        File file = new File(filename);
+        StringBuilder stringBuilder = new StringBuilder();
         try {
-            File file = new File(filename);
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
-            BufferedReader bufferedReader = null;
             if (file.exists()&&file.isFile()) {
                 bufferedReader = new BufferedReader(new FileReader(file));
                 while ((line = bufferedReader.readLine()) != null) {
@@ -102,14 +117,25 @@ public class service {
             }
             String content = stringBuilder.toString();
             if (!content.trim().isEmpty()) {
-                sendmail.sendBatchMai(title, content, mailUsernames);
+                sendmail.sendBatchMai(title, content, mailUsernames,mailSender2,from2);
                 log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
             } else {
                 log.warn("content is empty");
             }
+//            throw new Exception("hello");
         } catch (Exception e) {
-            log.error("发送mail异常", e);
+            log.error("发送mail异常,重试", e);
+            try{
+                String content = stringBuilder.toString();
+                if (!content.trim().isEmpty()) {
+                    sendmail.sendBatchMai(title, content, mailUsernames,mailSender1,from1);
+                    log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
+                } else {
+                    log.warn("content is empty");
+                }
+            }catch (Exception ex){
+                log.error("发送mail异常", e);
+            }
         }
     }
-
 }

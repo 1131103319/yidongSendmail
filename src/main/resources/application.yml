@@ -1,10 +1,12 @@
 spring :
   mail:
-#    host: smtp.139.com
-    host: 120.232.169.42
+    host: smtp.139.com
+#    host: 120.232.169.42
     port: 465
-    password:  9478a82c6ab0c31a8a00
+    password: 9478a82c6ab0c31a8a00
     username: 18335368637@139.com
+#    password: 7e276b49b7a5ffb27600
+#    username: 15698623569@139.com
     default-encoding: UTF-8
     properties:
       mail.smtp.auth: true
@@ -18,15 +20,36 @@ spring :
       mail.smtp.timeout: 30000  # 10秒
       mail.smtp.enable: true
       mail.smtp.ssl.enable: true
+  mail2:
+    host: smtp.139.com
+#    host: 120.232.169.42
+    port: 465
+#    password: 9478a82c6ab0c31a8a00
+#    username: 18335368637@139.com
+    password: 902ac2aa11e7004dac00
+    username: 18301240321@139.com
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.socketFactory.fallback: true
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+      mail.smtp.socketFactory.port: 465
+      mail.smtp.port: 465
+      # 设置连接超时（单位：毫秒）
+      mail.smtp.connectiontimeout: 30000  # 10秒
+      # 设置读取超时（单位：毫秒）
+      mail.smtp.timeout: 30000  # 10秒
+      mail.smtp.enable: true
+      mail.smtp.ssl.enable: true
   task:
     scheduling:
       pool:
         size: 8
 
-usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com,18766155909@139.com
-file: /mnt/disk28/sendmail/alarms/check_warn.log,/mnt/disk28/sendmail/alarms/out_apk.log,/mnt/disk28/sendmail/alarms/disk28_all_alert_day.log,/mnt/disk28/sendmail/alarms/disk28_all_alert_hour.log,/mnt/disk28/sendmail/alarms/disk_check_all.log,/mnt/disk28/sendmail/alarms/check_all_engine.log,/mnt/disk28/sendmail/alarms/hdfs_all_check_alert.log,/mnt/disk28/sendmail/alarms/bo_all_alert.log,/mnt/disk28/sendmail/alarms/api_restart_alert.log,/mnt/disk28/sendmail/alarms/fanzha_detail.log
-title: quark巡检告警,APK和域名巡检结果,disk28磁盘积压每日巡检,disk28磁盘积压每半小时巡检,磁盘巡检告警,潜在受害者巡检告警,数据断报巡检告警,反诈考核拨测巡检告警,api接口巡检告警,拨测名单巡检告警
-cron1: 10 35 * * * *
+#usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com,18766155909@139.com,1268776843@139.com
+#file: /mnt/disk28/sendmail/alarms/check_warn.log,/mnt/disk28/sendmail/alarms/out_apk.log,/mnt/disk28/sendmail/alarms/disk28_all_alert_day.log,/mnt/disk28/sendmail/alarms/disk28_all_alert_hour.log,/mnt/disk28/sendmail/alarms/disk_check_all.log,/mnt/disk28/sendmail/alarms/check_all_engine.log,/mnt/disk28/sendmail/alarms/hdfs_all_check_alert.log,/mnt/disk28/sendmail/alarms/bo_all_alert.log,/mnt/disk28/sendmail/alarms/api_restart_alert.log,/mnt/disk28/sendmail/alarms/fanzha_detail.log
+#title: quark巡检告警,APK和域名巡检结果,disk28磁盘积压每日巡检,disk28磁盘积压每半小时巡检,磁盘巡检告警,潜在受害者巡检告警,数据断报巡检告警,反诈考核拨测记录监控告警,api接口巡检告警,反诈名单巡检告警
+#cron1: 10 35 * * * *
 cron2: 20 45 * * * *
 cron3: 20 2 8 * * *
 cron4: 20 10,40 * * * *
@@ -36,10 +59,11 @@ cron7: 2 2 * * * *
 cron8: 2 15,45 * * * *
 cron9: 2 15 */6 * * *
 cron10: 2 12 * * * *
-#usernames: 18335368637@139.com
-#file: /tmp/hello
-#title: test
-#cron1: 2 * * * * *
+
+usernames: 18335368637@139.com
+file: /tmp/hello
+title: test
+cron1: 2 * * * * *
 
 
 logging:

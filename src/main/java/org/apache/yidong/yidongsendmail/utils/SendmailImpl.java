@@ -1,7 +1,5 @@
 package org.apache.yidong.yidongsendmail.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -18,9 +16,9 @@ import java.util.List;
 
 @Service
 public class SendmailImpl{
-    @Autowired
+//    @Autowired
     private JavaMailSender mailSender;
-    @Value("${spring.mail.username}")  //发送人的邮箱  比如13XXXXXX@139.com
+//    @Value("${spring.mail.username}")  //发送人的邮箱  比如13XXXXXX@139.com
     private String from;
 
     /**
@@ -44,7 +42,7 @@ public class SendmailImpl{
      * @param email
      * @throws MessagingException
      */
-    public void sendBatchMai(String title,String content,String[] email) throws MessagingException {
+    public void sendBatchMai(String title,String content,String[] email,JavaMailSender mailSender,String from) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         //true表示需要创建一个multipart message
         MimeMessageHelper helper = new MimeMessageHelper(message,true);
