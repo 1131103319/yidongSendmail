@@ -58,7 +58,7 @@ cron6: 20 3 2-23/3 * * *
 cron7: 2 2 * * * *
 cron8: 2 15,45 * * * *
 cron9: 2 15 */6 * * *
-cron10: 2 12 * * * *
+cron10: 2 3-59/10 * * * *
 
 usernames: 18335368637@139.com
 file: /tmp/hello
