@@ -1,10 +1,12 @@
 spring :
   mail:
-    host: smtp.139.com
-#    host: 120.232.169.42
+#    host: smtp.139.com
+    host: 120.232.169.42
     port: 465
-    password: 9478a82c6ab0c31a8a00
-    username: 18335368637@139.com
+    password: 0141a8628cb385cb1a00
+    username: 17801776707@139.com
+#    password: 9478a82c6ab0c31a8a00
+#    username: 18335368637@139.com
 #    password: 7e276b49b7a5ffb27600
 #    username: 15698623569@139.com
     default-encoding: UTF-8
@@ -21,8 +23,8 @@ spring :
       mail.smtp.enable: true
       mail.smtp.ssl.enable: true
   mail2:
-    host: smtp.139.com
-#    host: 120.232.169.42
+#    host: smtp.139.com
+    host: 120.232.169.42
     port: 465
 #    password: 9478a82c6ab0c31a8a00
 #    username: 18335368637@139.com
