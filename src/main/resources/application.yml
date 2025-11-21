@@ -48,7 +48,7 @@ spring :
       pool:
         size: 10
 
-usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com,18766155909@139.com,1268776843@139.com
+usernames: 18301240321@139.com,17801776707@139.com,13455113650@139.com,18266853902@139.com,13669794694@139.com,13570116051@139.com,13617845810@139.com,18766155909@139.com,1268776843@139.com,15933476548@139.com
 file: /mnt/disk28/sendmail/alarms/check_warn.log,/mnt/disk28/sendmail/alarms/out_apk.log,/mnt/disk28/sendmail/alarms/disk28_all_alert_day.log,/mnt/disk28/sendmail/alarms/disk28_all_alert_hour.log,/mnt/disk28/sendmail/alarms/disk_check_all.log,/mnt/disk28/sendmail/alarms/check_all_engine.log,/mnt/disk28/sendmail/alarms/hdfs_all_check_alert.log,/mnt/disk28/sendmail/alarms/bo_all_alert.log,/mnt/disk28/sendmail/alarms/api_restart_alert.log,/mnt/disk28/sendmail/alarms/fanzha_detail.log,/mnt/disk28/sendmail/alarms/check_all_namenode.log,/mnt/disk28/sendmail/alarms/check_all_hbase.log,/mnt/disk28/sendmail/alarms/ay_all_alert.log
 title: quark巡检告警,APK和域名巡检结果,disk28磁盘积压每日巡检,disk28磁盘积压每半小时巡检,磁盘巡检告警,潜在受害者巡检告警,数据断报巡检告警,反诈考核拨测记录监控告警,api接口巡检告警,反诈名单巡检告警,namenode节点异常状态告警,hyperbase-master节点异常状态告警,全量APK和域名考核告警
 cron1: 10 35 * * * *
