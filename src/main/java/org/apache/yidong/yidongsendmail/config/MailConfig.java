@@ -49,4 +49,21 @@ public class MailConfig {
         props.put("mail.smtp.ssl.enable", "true");
         return javaMailSender;
     }
+    @Bean
+    @ConfigurationProperties(prefix = "spring.mail3")
+    public JavaMailSender javaMailSender3() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        // 手动设置 properties
+        Properties props = javaMailSender.getJavaMailProperties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.socketFactory.fallback", "true");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.connectiontimeout", "30000");
+        props.put("mail.smtp.timeout", "30000");
+        props.put("mail.smtp.enable", "true");
+        props.put("mail.smtp.ssl.enable", "true");
+        return javaMailSender;
+    }
 }

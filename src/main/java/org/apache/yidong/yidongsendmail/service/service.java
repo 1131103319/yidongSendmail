@@ -27,10 +27,17 @@ public class service {
     @Qualifier("javaMailSender2")  // 注入第二个邮件发送器（spring.mail2）
     private JavaMailSender mailSender2;
 
+    @Autowired
+    @Qualifier("javaMailSender2")  // 注入第二个邮件发送器（spring.mail2）
+    private JavaMailSender mailSender3;
+
     @Value("${spring.mail.username}")  //发送人的邮箱  比如13XXXXXX@139.com
     private String from1;
     @Value("${spring.mail2.username}")  //发送人的邮箱  比如13XXXXXX@139.com
     private String from2;
+
+    @Value("${spring.mail3.username}")  //发送人的邮箱  比如13XXXXXX@139.com
+    private String from3;
 
     @Autowired
     private SendmailImpl sendmail;
@@ -149,7 +156,18 @@ public class service {
                     log.warn("content is empty");
                 }
             }catch (Exception ex){
-                log.error("发送mail异常", e);
+                log.error("发送mail异常,重试1", e);
+                try{
+                    String content = stringBuilder.toString();
+                    if (!content.trim().isEmpty()) {
+                        sendmail.sendBatchMai(title, content, mailUsernames,mailSender3,from3);
+                        log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
+                    } else {
+                        log.warn("content is empty");
+                    }
+                }catch (Exception ex1){
+                    log.error("发送mail异常", e);
+                }
             }
         }
     }
