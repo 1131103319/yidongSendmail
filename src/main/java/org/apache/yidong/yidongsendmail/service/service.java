@@ -144,7 +144,7 @@ public class service {
             } else {
                 log.warn("content is empty");
             }
-            throw new Exception("hello");
+//            throw new Exception("hello");
         } catch (Exception e) {
             log.error("发送mail异常,重试1 {} {}", mailSender1,from1, e);
             try{
