@@ -28,7 +28,7 @@ public class service {
     private JavaMailSender mailSender2;
 
     @Autowired
-    @Qualifier("javaMailSender2")  // 注入第二个邮件发送器（spring.mail2）
+    @Qualifier("javaMailSender3")  // 注入第二个邮件发送器（spring.mail3）
     private JavaMailSender mailSender3;
 
     @Value("${spring.mail.username}")  //发送人的邮箱  比如13XXXXXX@139.com
@@ -139,24 +139,25 @@ public class service {
             }
             String content = stringBuilder.toString();
             if (!content.trim().isEmpty()) {
-                sendmail.sendBatchMai(title, content, mailUsernames,mailSender2,from2);
+                sendmail.sendBatchMai(title, content, mailUsernames,mailSender1,from1);
                 log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
             } else {
                 log.warn("content is empty");
             }
-//            throw new Exception("hello");
+            throw new Exception("hello");
         } catch (Exception e) {
-            log.error("发送mail异常,重试", e);
+            log.error("发送mail异常,重试1 {} {}", mailSender1,from1, e);
             try{
                 String content = stringBuilder.toString();
                 if (!content.trim().isEmpty()) {
-                    sendmail.sendBatchMai(title, content, mailUsernames,mailSender1,from1);
+                    sendmail.sendBatchMai(title, content, mailUsernames,mailSender2,from2);
                     log.info("title:{},content:{},mailUsernames:{},status:success", title, content, mailUsernames);
                 } else {
                     log.warn("content is empty");
                 }
+//                throw new Exception("hello");
             }catch (Exception ex){
-                log.error("发送mail异常,重试1", e);
+                log.error("发送mail异常,重试2 {} {}", mailSender2,from2, ex);
                 try{
                     String content = stringBuilder.toString();
                     if (!content.trim().isEmpty()) {
@@ -166,7 +167,7 @@ public class service {
                         log.warn("content is empty");
                     }
                 }catch (Exception ex1){
-                    log.error("发送mail异常", e);
+                    log.error("发送mail异常3 {} {}",mailSender3,from3, ex1);
                 }
             }
         }
